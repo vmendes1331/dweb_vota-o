@@ -1,0 +1,14 @@
+{% extends 'index.html'%}
+
+{% block content %}
+    <form method="POST">
+
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success" value="Salvar"/>
+    </form>
+{% endblock %}
