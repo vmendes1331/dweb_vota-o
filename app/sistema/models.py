@@ -21,8 +21,17 @@ class UUIDUser(AbstractUser):
         verbose_name = 'usuário'
         verbose_name_plural = 'usuários'
 
-class Proposta(models.Model):
-    
+
+class CreateUpdateModel(models.Model):
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_at = models.DateTimeField('criado em', auto_now_add=True)
+    updated_at = models.DateTimeField('atualizado em', auto_now=True)
+
+    class Meta:
+        abstract = True
+
+class Proposta(CreateUpdateModel):
     nome = models.CharField(max_length=255, verbose_name='Lei')
     descricao = models.TextField(null=False, blank=True, verbose_name='Descrição')
     usuario = models.ForeignKey(UUIDUser, on_delete=models.CASCADE, related_name='propostas', verbose_name='UUIDUser')

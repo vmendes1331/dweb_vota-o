@@ -38,6 +38,9 @@ class PropostaView(DetailView):
 
         return super(PropostaView, self).get_context_data(**kwargs)
 
+    def get_queryset(self):
+        return models.Proposta.objects.all()
+
 class PropostaCreateView(CreateView):
 
     model = models.Proposta

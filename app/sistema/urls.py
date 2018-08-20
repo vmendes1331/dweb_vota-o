@@ -18,7 +18,7 @@ urlpatterns = [
     path('signup/', sistema.UserCreateView.as_view(template_name='usuario/create.html'), name='signup'),
 
     path('proposta/', views.PropostaCreateView.as_view(), name='proposta-create'),
-    path('essa/<pk>', views.PropostaView.as_view(), name='proposta-detail'),
+    path('proposta/<pk>/', views.PropostaView.as_view(), name='proposta-detail'),
     path('propostas/', views.PropostaListView.as_view(), name='proposta-list'),
 
     path('comentario/', views.ComentarioCreateView.as_view(), name='comentario-create'),
