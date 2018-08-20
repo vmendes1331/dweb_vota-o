@@ -1,4 +1,4 @@
-{% extends 'index.html'%}
+{% extends 'base.html'%}
 
 {% block content %}
 
@@ -8,12 +8,14 @@
             <th style="width: 2%">#</th>
             <th>Comentários</th>
             <th>Usuário</th>
+            <th>Proposta</th>
           </tr>
           {% for object in object_list %}
             <tr>
                 <td></td>
                 <td>{{ object.comentario }}</td>
                 <td>{{ object.usuario }}</td>
+                <td>{{ object.proposta }}</td>
             </tr>
           {% endfor %}
         </tbody>

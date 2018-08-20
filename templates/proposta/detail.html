@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<table class="table table-striped">
+    <tbody>
+      <tr>
+        <th style="width: 2%">#</th>
+        <th>Comentários</th>
+      </tr>
+      {% for x in comentario %}
+        <tr>
+            <td></td>
+            <td> {{ x.comentario }} </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

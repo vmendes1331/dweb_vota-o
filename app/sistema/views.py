@@ -9,6 +9,35 @@ from django.urls import reverse_lazy
 
 from . import models
 
+from . import forms
+
+class IndexView(TemplateView):
+
+    template_name = 'dashboard.html'
+
+class UserCreateView(CreateView):
+
+    model = models.UUIDUser
+    template_name = 'usuario/auth.html'
+    success_url = reverse_lazy('sistema:proposta-create')
+    form_class = forms.UserForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.set_password(obj.password)
+        obj.save()
+        return super(UserCreateView, self).form_valid(form)
+
+class PropostaView(DetailView):
+
+    model = models.Proposta
+    template_name = 'proposta/detail.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['comentario'] = models.Comentario.objects.filter(id=self.object.pk)
+
+        return super(PropostaView, self).get_context_data(**kwargs)
+
 class PropostaCreateView(CreateView):
 
     model = models.Proposta
@@ -53,6 +82,7 @@ class ComentarioListView(ListView):
     model = models.Comentario
     template_name = 'comentario/list.html'
 
-class IndexView(TemplateView):
+class PropostaListView(ListView):
 
-    template_name = 'index.html'
+    model = models.Proposta
+    template_name = 'proposta/list.html'
